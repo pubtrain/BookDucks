@@ -1,0 +1,59 @@
+* {
+  font-family: 'Fira Code', sans-serif, serif;
+}
+
+body {
+}
+
+header {
+  background-color: red;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.login-container {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+.login {
+  height: auto;
+  width: 60vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-container {
+  display: flex;
+}
+.book {
+  border: 1px solid black;
+}
+
+.soundbook-container {
+  display: flex;
+}
+
+.soundbook {
+  border: 1px solid black;
+}
+
+footer {
+  background-color: red;
+  padding: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+img {
+  height: 300px;
+  width: 200px;
+}
+
+a {
+  padding: 10px;
+}

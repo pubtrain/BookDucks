@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "soundbooks",
+  "info": {
+    "singularName": "soundbook",
+    "pluralName": "soundbooks",
+    "displayName": "soundbook",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "releasedate": {
+      "type": "date",
+      "required": true
+    },
+    "length": {
+      "type": "decimal",
+      "required": true
+    },
+    "score": {
+      "type": "integer"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "author": {
+      "type": "string",
+      "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "mappedBy": "soundbooks"
+    },
+    "userId": {
+      "type": "integer"
+    }
+  }
+}
