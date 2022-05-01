@@ -7,6 +7,7 @@ const registerPassword = document.getElementById('registerPassword');
 const registerEmail = document.getElementById('registerEmail');
 const registerBtn = document.getElementById('registerBtn');
 const loginContainer = document.getElementById('loginContainer');
+const loginWrapper = document.getElementById('loginWrapper');
 const registerContainer = document.getElementById('registerContainer');
 const logOutBtn = document.getElementById('logOut');
 const navBar = document.getElementById('navBar');
@@ -72,15 +73,15 @@ let listBooks = async () => {
     console.log(book);
     document.querySelector('#book-containerlist').innerHTML += `
     <div class="book">
+    <img src="${
+      book.attributes.cover.data &&
+      `http://localhost:1337${book.attributes.cover.data.attributes.url}`
+    }" alt="Bild på bokomslaget" class="book-cover">
     <p>${book.attributes.title}</p>
     <p>Skriven av: ${book.attributes.author}</p>
     <p>${book.attributes.pages} sidor lång</p>
     <p>Betyg: ${book.attributes.score}</p>
     <p>Genre: ${book.attributes.genres.data[0].attributes.genreType}</p>
-    <img src="${
-      book.attributes.cover.data &&
-      `http://localhost:1337${book.attributes.cover.data.attributes.url}`
-    }" alt="Bild på bokomslaget" class="book-cover">
     <p>Utlånad av: ${book.attributes.user.data.attributes.username}, ${
       book.attributes.user.data.attributes.email
     }</p>
@@ -108,16 +109,15 @@ let listSoundBooks = async () => {
       },
     }
   );
-  console.log('response :>> ', response);
   response.data.data.forEach((soundbook) => {
     document.querySelector('#soundbook-containerlist').innerHTML += `
-    <div class="soundbook">
+    <div class="book">
+    <img src="http://localhost:1337${soundbook.attributes.cover.data.attributes.url}" alt="Bild på bokomslaget" class="book-cover">
     <p>${soundbook.attributes.title}</p>
     <p>Skriven av: ${soundbook.attributes.author}</p>
     <p>Publicerad: ${soundbook.attributes.releasedate}</p>
     <p>${soundbook.attributes.length} timmar lång</p>
     <p>Betyg: ${soundbook.attributes.score}</p>
-    <img src="http://localhost:1337${soundbook.attributes.cover.data.attributes.url}" alt="Bild på bokomslaget" class="book-cover">
     <p>Utlånad av: ${soundbook.attributes.user.data.attributes.username}, ${soundbook.attributes.user.data.attributes.email}</p>
     <p>Genre: ${soundbook.attributes.genres.data[0].attributes.genreType}</p>
 
@@ -186,7 +186,8 @@ let showProfile = async () => {
         .slice(0, 10);
       document.getElementById(
         'profileContainer'
-      ).innerHTML = `<div class="myProfile">
+      ).innerHTML = `<div class="my-profile">
+      <h2>Min profil</h2>
         <p>Användarnamn: ${userData.data.username}</p>
         <p>Epost: ${userData.data.email}</p>
         <p>Id: ${userData.data.id}</p>
@@ -231,7 +232,7 @@ let showProfile = async () => {
       soundBookResponse.data.data.forEach((soundbook) => {
         if (soundbook.attributes.userId == userData.data.id) {
           document.querySelector('#profileContainer').innerHTML += `
-        <div class="soundbook">
+        <div class="book">
         <p>${soundbook.attributes.title}</p>
         <p>Skriven av: ${soundbook.attributes.author}</p>
         <p>Publicerad: ${soundbook.attributes.releasedate}</p>
@@ -276,7 +277,7 @@ let postBook = async () => {
       let genreId = document.querySelector('#genre').value;
       let imageId = response.data[0].id;
       let userId = sessionStorage.getItem('id');
-      let userNumber = axios.post(
+      axios.post(
         'http://localhost:1337/api/books?populate=*',
         {
           data: {
@@ -306,6 +307,7 @@ lendBooksBtn.addEventListener('click', (e) => {
   document.querySelector('#book-containerlist').innerHTML = '';
   document.querySelector('#soundbook-containerlist').innerHTML = '';
   welcomeContainer.classList.add('hidden');
+  loginWrapper.classList.add('hidden');
   postSoundDiv.classList.add('hidden');
   profileContainer.classList.add('hidden');
   postBookDiv.classList.remove('hidden');
@@ -366,6 +368,7 @@ lendSoundBtn.addEventListener('click', (e) => {
   document.querySelector('#book-containerlist').innerHTML = '';
   document.querySelector('#soundbook-containerlist').innerHTML = '';
   welcomeContainer.classList.add('hidden');
+  loginWrapper.classList.add('hidden');
   postBookDiv.classList.add('hidden');
   profileContainer.classList.add('hidden');
   postSoundDiv.classList.remove('hidden');

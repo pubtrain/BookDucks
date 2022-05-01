@@ -1,35 +1,83 @@
 * {
   font-family: 'Fira Code', sans-serif, serif;
+  padding: 0px;
+  margin: 0px;
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
 }
 
 header {
-  background-color: red;
   text-align: center;
-  border: 2px solid black;
+  border-bottom: 2px double black;
+  display: flex;
+  justify-content: center;
+  background-color: #ededed;
+  position: relative;
+}
+
+.header-container {
+  width: 70vw;
+}
+
+.header-text {
+  padding: 2.5rem;
+}
+
+.mediaContainer {
+  width: 100vw;
+  display: flex;
+  background-color: lightblue;
+  flex-wrap: wrap;
+}
+
+.book {
+  height: 475px;
+  width: 250px;
+  border: 1px solid black;
+  margin: 20px;
+  padding: 20px;
+  background-color: lightgoldenrodyellow;
+}
+
+.book p {
+  margin-top: 5px;
+}
+
+.book img {
+  margin-top: 5px;
+}
+
+.book-cover {
+  height: 10rem;
+  width: 7rem;
+}
+
+.login-wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .login-container {
   display: flex;
-  width: 100vw;
   justify-content: center;
-  align-items: center;
+  flex-direction: row;
 }
 .login {
-  height: auto;
-  width: 60vw;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+
+.login > * {
+  margin-top: 10px;
 }
 
 .book-container {
   display: flex;
-}
-.book {
-  border: 1px solid black;
+  flex-flow: wrap;
 }
 
 .soundbook-container {
@@ -37,12 +85,14 @@ header {
 }
 
 .soundbook {
-  border: 1px solid black;
 }
 
 footer {
-  background-color: red;
   padding: 20px;
+  background-color: #ededed;
+  border-top: 2px double black;
+  height: 150px;
+  width: 100vw;
 }
 
 .hidden {
@@ -54,6 +104,84 @@ img {
   width: 200px;
 }
 
-a {
+.nav-button {
+  background-color: #77c3c4;
+  border: none;
+  color: white;
+  padding: 8px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.welcome-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.welcome-message {
+  width: 60vw;
+}
+
+.welcome-message > * {
   padding: 10px;
+  margin-top: 10px;
+}
+
+.header-pic {
+  height: 100px;
+  width: 75px;
+  position: absolute;
+  left: 50px;
+  top: 40px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+nav {
+}
+
+.main-wrapper {
+  width: 100vw;
+  position: relative;
+}
+
+.postDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  position: absolute;
+  top: 5px;
+}
+
+.postDiv > input {
+  width: 60vw;
+}
+
+.login-wrapper {
+}
+
+.my-profile {
+  display: inline-block;
+}
+
+.footer-icons {
+  height: 140px;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-icons i {
+  font-size: 40px;
 }

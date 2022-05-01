@@ -7,6 +7,11 @@
     <title>BookDucks</title>
     <link rel="stylesheet" href="style.css" />
     <script
+      src="https://kit.fontawesome.com/be475255e6.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"
       integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ=="
       crossorigin="anonymous"
@@ -15,144 +20,186 @@
   </head>
   <body>
     <header>
-      <h1>BookDucks</h1>
-      <nav id="navBar" class="hidden">
-        <a href="#" id="seeBookList">Se böcker</a>
-        <a href="#" id="seeSoundBookList">Se ljudböcker</a>
-        <a href="#" id="lendBooksBtn">Låna ut böcker</a>
-        <a href="#" id="lendSoundBtn">Låna ut ljudböcker</a>
-        <a href="#" id="profileBtn">Min profil</a>
-        <a href="#" id="logOut">Logga ut</a>
-      </nav>
+      <img
+        src="/pictures/anka.jpg"
+        alt="Anka sitter på en hög av böcker"
+        class="header-pic"
+      />
+      <div class="header-container">
+        <div class="header-container">
+          <h1 class="header-text">BookDucks</h1>
+        </div>
+        <nav id="navBar" class="hidden">
+          <a href="#" id="seeBookList" class="nav-button">Se böcker</a>
+          <a href="#" id="seeSoundBookList" class="nav-button">Se ljudböcker</a>
+          <a href="#" id="lendBooksBtn" class="nav-button">Låna ut böcker</a>
+          <a href="#" id="lendSoundBtn" class="nav-button"
+            >Låna ut ljudböcker</a
+          >
+          <a href="#" id="profileBtn" class="nav-button">Min profil</a>
+          <a href="#" id="logOut" class="nav-button">Logga ut</a>
+        </nav>
+      </div>
     </header>
     <main>
-      <div class="welcome-container hidden">
-        <h2>Välkommen till BookDucks!</h2>
-        <p>
-          Här kan du låna böcker från andra användare att läsa eller lyssna på,
-          samt låna ut dina egna.
-        </p>
-        <p>
-          Denna sida hjälper oss att återanvända våra gamla böcker för att
-          minska konsumptionen och påverkan på våran planet, samt att spara
-          pengar!
-        </p>
-      </div>
-      <div id="book-containerlist"></div>
-      <div id="soundbook-containerlist"></div>
-      <div id="profileContainer"></div>
-      <div class="login-container" id="loginContainer">
-        <div class="login" id="logIn">
-          <h2>Välkommen!</h2>
-          <label for="username">Användarnamn:</label>
-          <input type="text" name="username" id="username" />
-          <label for="password">Lösenord</label>
-          <input type="password" name="password" id="password" />
-          <button type="submit" id="login">Logga in</button>
+      <div class="main-wrapper">
+        <div class="welcome-container hidden">
+          <div class="welcome-message">
+            <h2>Välkommen till BookDucks!</h2>
+            <p>
+              Här kan du låna böcker från andra användare att läsa eller lyssna
+              på, samt låna ut dina egna.
+            </p>
+            <p>
+              Denna sida hjälper oss att återanvända våra gamla böcker för att
+              minska konsumptionen och påverkan på våran planet, samt att spara
+              pengar!
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="register-container" id="registerContainer">
-        <div class="register">
-          <h3>Registrera ny användare</h3>
-          <label for="register-name">Användarnamn:</label>
-          <input type="text" name="register-name" id="registerName" />
-          <label for="register-password">Lösenord:</label>
+        <div id="book-containerlist" class="mediaContainer"></div>
+        <div id="soundbook-containerlist" class="mediaContainer"></div>
+        <div id="profileContainer"></div>
+        <div class="login-wrapper" id="loginWrapper">
+          <div class="login-container" id="loginContainer">
+            <div class="login" id="logIn">
+              <h2>Medlemmar</h2>
+              <label for="username">Användarnamn:</label>
+              <input type="text" name="username" id="username" />
+              <label for="password">Lösenord:</label>
+              <input type="password" name="password" id="password" />
+              <button type="submit" id="login" class="nav-button">
+                Logga in
+              </button>
+            </div>
+          </div>
+          <div class="login-container" id="registerContainer">
+            <div class="login">
+              <h3>Registrera ny användare</h3>
+              <label for="register-name">Användarnamn:</label>
+              <input type="text" name="register-name" id="registerName" />
+              <label for="register-password">Lösenord:</label>
+              <input
+                type="password"
+                name="register-password"
+                id="registerPassword"
+              />
+              <label for="register-email">Email:</label>
+              <input type="email" name="register-email" id="registerEmail" />
+              <button type="submit" id="registerBtn" class="nav-button">
+                Registrera
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="post-bookDiv postDiv hidden">
+          <h2 class="post-title">Låna ut en bok</h2>
+          <label for="postBookTitle">Titel:</label>
           <input
-            type="password"
-            name="register-password"
-            id="registerPassword"
+            type="text"
+            name="book-title"
+            id="postBookTitle"
+            placeholder="Bokens titel"
           />
-          <label for="register-email">Email:</label>
-          <input type="email" name="register-email" id="registerEmail" />
-          <button type="submit" id="registerBtn">Registrera</button>
+          <label for="postBookAuthor">Författarens namn:</label>
+          <input
+            type="text"
+            name="author-name"
+            id="postBookAuthor"
+            placeholder="Författarens namn"
+          />
+          <label for="genre">Bokens genre:</label>
+          <select name="genre" id="genre">
+            <option value="null" disabled selected>Välj en genre</option>
+            <option value="9">Barnvänlig</option>
+            <option value="7">Novell</option>
+            <option value="4">Deckare</option>
+            <option value="3">Fantasy</option>
+            <option value="2">Skräck</option>
+            <option value="6">Sci-Fi</option>
+            <option value="5">Romantik</option>
+          </select>
+          <label for="postBookPages">Hur många sidor har boken?</label>
+          <input
+            type="number"
+            name="book-pages"
+            id="postBookPages"
+            placeholder="Antal sidor"
+          />
+          <label for="postBookScore">Bokens betyg:</label>
+          <input
+            type="number"
+            min="1"
+            max="10"
+            name="book-score"
+            id="postBookScore"
+          />
+          <label for="postBookPicture" class="">Bild på bokomslaget:</label>
+          <input type="file" name="book-picture" id="postBookPicture" />
+          <button type="button" id="postBookBtn" class="nav-button">
+            Lägg till bok
+          </button>
         </div>
-      </div>
-      <div class="post-bookDiv hidden">
-        <label for="postBookTitle">Titel</label>
-        <input
-          type="text"
-          name="book-title"
-          id="postBookTitle"
-          placeholder="Bokens titel"
-        />
-        <input
-          type="text"
-          name="author-name"
-          id="postBookAuthor"
-          placeholder="Författarens namn"
-        />
-        <select name="genre" id="genre">
-          <option value="null" disabled selected>Välj en genre!</option>
-          <option value="9">Barnvänlig</option>
-          <option value="7">Novell</option>
-          <option value="4">Deckare</option>
-          <option value="3">Fantasy</option>
-          <option value="2">Skräck</option>
-          <option value="6">Sci-Fi</option>
-          <option value="5">Romantik</option>
-        </select>
-        <input
-          type="number"
-          name="book-pages"
-          id="postBookPages"
-          placeholder="Antal sidor"
-        />
-        <label for="postBookScore">Betyg:</label>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          name="book-score"
-          id="postBookScore"
-        />
-        <input type="file" name="book-picture" id="postBookPicture" />
-        <button type="button" id="postBookBtn">Lägg till bok</button>
-      </div>
-      <div class="post-soundDiv hidden">
-        <label for="postSoundTitle">Titel:</label>
-        <input
-          type="text"
-          name="book-title"
-          id="postSoundTitle"
-          placeholder="Ljudbokens titel"
-        />
-        <input
-          type="text"
-          name="author-name"
-          id="postSoundAuthor"
-          placeholder="Författarens namn"
-        />
-        <select name="genre" id="soundGenre">
-          <option value="null" disabled selected>Välj en genre!</option>
-          <option value="4">Barnvänlig</option>
-          <option value="3">Skräck</option>
-          <option value="7">Deckare</option>
-          <option value="5">Fantasy</option>
-          <option value="2">Humor</option>
-          <option value="6">Sci-fi</option>
-          <option value="9">Romantik</option>
-        </select>
-        <input
-          type="number"
-          name="book-pages"
-          id="postSoundLength"
-          placeholder="Ljudbokens längd"
-        />
-        <label for="soundBookDate">Publicerad:</label>
-        <input type="date" name="book-date" id="soundBookDate" />
-        <label for="postSoundScore">Betyg:</label>
-        <input
-          type="number"
-          min="1"
-          max="10"
-          name="book-score"
-          id="postSoundScore"
-        />
-        <input type="file" name="book-picture" id="postSoundPicture" />
-        <button type="button" id="postSoundBtn">Lägg till bok</button>
+        <div class="post-soundDiv postDiv hidden">
+          <h2 class="post-title">Låna ut en ljudbok</h2>
+          <label for="postSoundTitle">Titel:</label>
+          <input
+            type="text"
+            name="book-title"
+            id="postSoundTitle"
+            placeholder="Ljudbokens titel"
+          />
+          <label for="postSoundAuthor">Författarens namn:</label>
+          <input
+            type="text"
+            name="author-name"
+            id="postSoundAuthor"
+            placeholder="Författarens namn"
+          />
+          <label for="soundGenre">Bokens genre:</label>
+          <select name="genre" id="soundGenre">
+            <option value="null" disabled selected>Välj en genre!</option>
+            <option value="9">Barnvänlig</option>
+            <option value="7">Skräck</option>
+            <option value="4">Deckare</option>
+            <option value="3">Fantasy</option>
+            <option value="2">Humor</option>
+            <option value="6">Sci-Fi</option>
+            <option value="5">Romantik</option>
+          </select>
+          <label for="postSoundLength">Hur lång är ljudboken?</label>
+          <input
+            type="number"
+            name="book-pages"
+            id="postSoundLength"
+            placeholder="Ljudbokens längd"
+          />
+          <label for="soundBookDate">Publicerad:</label>
+          <input type="date" name="book-date" id="soundBookDate" />
+          <label for="postSoundScore">Bokens betyg:</label>
+          <input
+            type="number"
+            min="1"
+            max="10"
+            name="book-score"
+            id="postSoundScore"
+          />
+          <label for="postSoundPicture">Bild på bokomslaget:</label>
+          <input type="file" name="book-picture" id="postSoundPicture" />
+          <button type="button" id="postSoundBtn" class="nav-button">
+            Lägg till bok
+          </button>
+        </div>
       </div>
     </main>
-    <footer>Footer</footer>
+    <footer>
+      <div class="footer-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+      </div>
+      <p>Copyright &copy; Kalle 2022-</p>
+    </footer>
     <script src="main.js"></script>
   </body>
 </html>
