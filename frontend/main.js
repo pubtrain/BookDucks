@@ -80,7 +80,7 @@ let listBooks = async () => {
     <p>${book.attributes.title}</p>
     <p>Skriven av: ${book.attributes.author}</p>
     <p>${book.attributes.pages} sidor lång</p>
-    <p>Betyg: ${book.attributes.score}</p>
+    <p>Mitt betyg: ${book.attributes.score}/10</p>
     <p>Genre: ${book.attributes.genres.data[0].attributes.genreType}</p>
     <p>Utlånad av: ${book.attributes.user.data.attributes.username}, ${
       book.attributes.user.data.attributes.email
@@ -117,7 +117,7 @@ let listSoundBooks = async () => {
     <p>Skriven av: ${soundbook.attributes.author}</p>
     <p>Publicerad: ${soundbook.attributes.releasedate}</p>
     <p>${soundbook.attributes.length} timmar lång</p>
-    <p>Betyg: ${soundbook.attributes.score}</p>
+    <p>Mitt betyg: ${soundbook.attributes.score}/10</p>
     <p>Utlånad av: ${soundbook.attributes.user.data.attributes.username}, ${soundbook.attributes.user.data.attributes.email}</p>
     <p>Genre: ${soundbook.attributes.genres.data[0].attributes.genreType}</p>
 
